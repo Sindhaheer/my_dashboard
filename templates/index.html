@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Web Apps Dashboard</h1>
+    <ul>
+        <li><a href="{{ url_for('calculator') }}">Calculator</a></li>
+        <li><a href="{{ url_for('converter') }}">Currency Converter</a></li>
+        <li><a href="{{ url_for('rps') }}">Rock Paper Scissors</a></li>
+        <li><a href="{{ url_for('guess') }}">Guessing Game</a></li>
+        <li><a href="{{ url_for('register') }}">Register</a></li>
+        <li><a href="{{ url_for('weather') }}">Weather App</a></li>
+    </ul>
+</body>
+</html>

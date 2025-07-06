@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background: linear-gradient(to right, #87CEEB);
+            font-family: 'Segoe UI';
+            color: white;
+            text-align: center;
+            padding-top: 100px;
+        }
+        .game-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        button {
+            padding: 15px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            background: white;
+            color: black;
+            cursor: pointer;
+        }
+        p {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+
+    
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Rock Paper Scissors</h1>
+    <div class="game-box">
+    <form method="post">
+        <label for="choice">Choose:</label>
+        <select name="choice" id="choice">
+            <option value="rock" {% if player=='rock' %}selected{% endif %}>Rock</option>
+            <option value="paper" {% if player=='paper' %}selected{% endif %}>Paper</option>
+            <option value="scissors" {% if player=='scissors' %}selected{% endif %}>Scissors</option>
+        </select>
+    </div>
+        <button type="submit">Play</button>
+    </form>
+
+    {% if result %}
+    <div class="game-box">
+
+        <p>You chose: <strong>{{ player }}</strong></p>
+        <p>Computer chose: <strong>{{ computer }}</strong></p>
+        <h2>{{ result }}</h2>
+        <a href="/" style="display: inline-block; margin-top: 20px; color: white; text-decoration: underline;">← Back to Dashboard</a>
+    </div>
+    {% endif %}
+</body>
+</html>

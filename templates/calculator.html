@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flask Calculator</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .calculator {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+    }
+    .display {
+      background: black;
+      color: white;
+      font-size: 24px;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      text-align: right;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 60px);
+      gap: 10px;
+    }
+    button {
+      height: 60px;
+      font-size: 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .number { background-color: #666; color: white; }
+    .operator { background-color: #f0ad4e; color: white; }
+    .equal { background-color: #5cb85c; color: white; grid-column: span 2; }
+    .clear { background-color: #d9534f; color: white; }
+  </style>
+</head>
+<body>
+    
+  <form class="calculator" method="POST" onsubmit="return setExpressionBeforeSubmit();">
+    <div class="display">{{ expression }} = {{ result }}</div>
+    <input type="hidden" id="expression" name="expression">
+    <div class="buttons">
+      {% for btn in ['7','8','9','+', '4','5','6','-', '1','2','3','*', '0','C','=','/'] %}
+        {% if btn == 'C' %}
+          <button type="button" class="clear" onclick="clearDisplay()">C</button>
+        {% elif btn == '=' %}
+          <button type="submit" class="equal">=</button>
+        {% elif btn in ['+','-','*','/'] %}
+          <button type="button" class="operator" onclick="appendValue('{{ btn }}')">{{ btn }}</button>
+        {% else %}
+          <button type="button" class="number" onclick="appendValue('{{ btn }}')">{{ btn }}</button>
+        {% endif %}
+      {% endfor %}
+      
+      
+    </div>
+    <a href="/" style="display: inline-block; margin-top: 20px; color: white; text-decoration: underline;">← Back to Dashboard</a>
+  </form>
+
+  <script>
+    let expression = "";
+
+    function appendValue(val) {
+      expression += val;
+      document.getElementById("expression").value = expression;
+    }
+
+    function clearDisplay() {
+      expression = "";
+      document.getElementById("expression").value = "";
+    }
+
+    function setExpressionBeforeSubmit() {
+      document.getElementById("expression").value = expression;
+      return true;
+    }
+
+  </script>
+  
+  
+</body>
+</html></br>
